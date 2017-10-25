@@ -13,9 +13,16 @@
         </div>
       </el-row>
       <el-row class="table">
-        <el-table v-loading.body="loading" stripe border fit style="width: 100%" :data="tableData" maxHeight="500">
-          <el-table-column type="selection" width="45"></el-table-column>
-          <el-table-column type="index" width="45"></el-table-column>
+        <el-table v-loading.body="loading"
+                  stripe
+                  border
+                  fit
+                  style="width: 100%"
+                  :data="tableData"
+                  maxHeight="500"
+                  :default-sort="{prop: 'name', order: 'descending'}">
+          <el-table-column type="selection" min-width="45"></el-table-column>
+          <el-table-column type="index" min-width="45"></el-table-column>
           <!--<el-table-column type="expand">
             <template scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
@@ -34,6 +41,7 @@
                            :label="list.Name"
                            :sortable="list.SortFlag"
                            align="center"
+                           :min-width="list.Width"
                            >
             <template scope="scope">
               <table-column-data :list="list" :scope="scope"></table-column-data>
@@ -135,7 +143,6 @@
                 title: '数据请求出错',
                 type: 'error'
               });
-              setTimeout(() => { this.$store.dispatch('setAlertOption',{ show: false }) }, 5000);
             });
 
           });

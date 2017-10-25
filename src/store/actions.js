@@ -17,5 +17,8 @@ export const setActiveName = ({ commit }, activeName) => {
 };
 
 export const setAlertOption = ({ commit },options) =>{
-  commit(types.SET_ALERT_OPTION, options)
+  commit(types.SET_ALERT_OPTION, options);
+  setTimeout(() => {
+    commit(types.SET_ALERT_OPTION, {show: false})
+  }, 5000)
 };

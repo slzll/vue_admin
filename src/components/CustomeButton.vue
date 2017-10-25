@@ -91,7 +91,6 @@
             type:'error',
             title:"未设置!"
           });
-          setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
           return;
         }
         let submit = getByKey(this.scope.row, config[1]);
@@ -105,7 +104,6 @@
             type:'error',
             title:"未设置!"
           });
-          setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
           return;
         }
         switch (operateCode) {
@@ -125,7 +123,6 @@
                   type:'error',
                   title:res.Message
                 });
-                setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
               } else {
                 let fun = function () {
                   if (res.PrintUser.length > 0) {
@@ -138,7 +135,6 @@
                       type:'error',
                       title:"没有符合打印的用户！"
                     });
-                    setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
                   }
                 };
                 if (res.UnPrintUser.length > 0) {
@@ -157,7 +153,6 @@
                   type:'error',
                   title:"连接失败!"
                 });
-                setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
             })
             return false;
           case "UpPwd":
@@ -168,7 +163,6 @@
                   type:'error',
                   title:res.Message
                 });
-                setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
               }else{
                 this.dialogData = res;
               }
@@ -190,7 +184,6 @@
                 type:'success',
                 title:res.Message
               });
-              setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
               if (res.Type == 1) {
                 this.dialogVisible = false;
               }

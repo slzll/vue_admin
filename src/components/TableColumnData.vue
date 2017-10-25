@@ -118,8 +118,10 @@
 </script>
 
 <style>
-  .el-table .cell{
-    white-space: nowrap !important;
-    word-break: keep-all !important;
-  }
+  /*.el-table .cell{*/
+    /*white-space: nowrap;*/
+    /*word-break: keep-all;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+  /*}*/
 </style>

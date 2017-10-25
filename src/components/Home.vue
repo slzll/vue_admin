@@ -311,7 +311,6 @@
                   type:'error',
                   title:"访问人数统计" + res.Message
                 });
-                setTimeout(() => {this.$store.dispatch('setAlertOption',{show: false})},5000)
               }
             })
         },
