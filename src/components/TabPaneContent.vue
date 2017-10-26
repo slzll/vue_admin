@@ -35,7 +35,7 @@
             </template>
           </el-table-column>-->
           <el-table-column v-for="list in rowData"
-                           v-if="(list.ShowLevel == 2 && !list.OuterFlag)"
+                           v-if="(list.ShowLevel >= 1 && !list.OuterFlag)"
                            :key="list.Code"
                            :prop="list.Code"
                            :label="list.Name"
@@ -120,6 +120,9 @@
           post(this.fieldUrl).then(res => {
             this.rowData = res.rows;
             res.rows.map((item, index) => {
+              if(item.NameA === "submitparam"|| item.NameA === "buttonsubmit" || item.NameA === "submitline"){
+                return;
+              }
               if (item.DataValue && item.DataValue.indexOf('data_') == -1 && /^\//.test(item.DataValue)){
                 let path = item.DataValue.split(',')[0];
 

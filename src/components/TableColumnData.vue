@@ -36,7 +36,7 @@
       {{getLocalData(list.DataValue,scope.row[list.Code])}}
     </template>
     <template v-else>
-      <template v-if="list.EditType.indexOf('check')>-1 && list.DataValue">
+      <template v-if="list.EditType && list.EditType.indexOf('check')>-1 && list.DataValue">
         {{getLocalData(list.DataValue,scope.row[list.Code])}}
       </template>
       <span v-else>{{scope.row[list.Code]}}</span>
@@ -118,10 +118,4 @@
 </script>
 
 <style>
-  /*.el-table .cell{*/
-    /*white-space: nowrap;*/
-    /*word-break: keep-all;*/
-    /*overflow: hidden;*/
-    /*text-overflow: ellipsis;*/
-  /*}*/
 </style>

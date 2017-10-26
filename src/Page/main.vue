@@ -11,7 +11,8 @@
               :description="alertOption.description"
               :closable="alertOption.closable"
               :close-text="alertOption.closeText"
-              :show-icon="alertOption.showIcon"></el-alert>
+              :show-icon="alertOption.showIcon"
+              @close=""></el-alert>
   </div>
 </template>
 
@@ -40,7 +41,11 @@ export default {
     created() {
 
     },
-    methods: {}
+    methods: {
+      closeAlert(){
+        this.$store.dispatch('setAlertOptions',{show: false})
+      }
+    }
 };
 </script>
 
