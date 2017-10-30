@@ -16,7 +16,8 @@ export const state = {
   isCollapse: false,
   activeName: 'home',
   tabMenu: {},
-  localData: localData
+  localData: localData,
+  reload: false
 };
 
 export const mutations = {
@@ -46,5 +47,8 @@ export const mutations = {
     state.alertOption.closable = closable === false?false:true;
     state.alertOption.closeText = closeText || state.alertOption.closeText;
     state.alertOption.showIcon = (showIcon === false|| !showIcon)?false:true;
+  },
+  [types.SET_RELOAD] (state, value){
+    state.reload = value;
   }
 };

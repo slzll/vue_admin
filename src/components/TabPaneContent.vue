@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="this.switchView === 'Table'">
+      <input type="hidden" :class="'tab_'+tabOptions.Code" name="__RequestVerificationToken">
       <el-row class="actions">
         <div class="pull-right">
           <el-button v-for="list in toolData"
@@ -20,9 +21,11 @@
                   style="width: 100%"
                   :data="tableData"
                   maxHeight="500"
-                  :default-sort="{prop: 'name', order: 'descending'}">
-          <el-table-column type="selection" min-width="45"></el-table-column>
-          <el-table-column type="index" min-width="45"></el-table-column>
+                  :default-sort="{prop: 'name', order: 'descending'}"
+                  highlight-current-row
+                  @current-change="handleRowChange">
+          <el-table-column type="selection" min-width="45" fixed></el-table-column>
+          <el-table-column type="index" min-width="45" fixed></el-table-column>
           <!--<el-table-column type="expand">
             <template scope="props">
               <el-form label-position="left" inline class="demo-table-expand">
@@ -34,17 +37,22 @@
               </el-form>
             </template>
           </el-table-column>-->
-          <el-table-column v-for="list in rowData"
+          <el-table-column v-for="(list,index) in rowData"
                            v-if="(list.ShowLevel >= 1 && !list.OuterFlag)"
                            :key="list.Code"
                            :prop="list.Code"
+                           :fixed="colConfig[0]>=index"
                            :label="list.Name"
                            :sortable="list.SortFlag"
                            align="center"
                            :min-width="list.Width"
+                           show-overflow-tooltip
                            >
             <template scope="scope">
-              <table-column-data :list="list" :scope="scope"></table-column-data>
+              <table-column-data :list="list"
+                                 :scope="scope"
+                                 :title="list.Name"
+                                 :tab-options="tabOptions"></table-column-data>
             </template>
           </el-table-column>
         </el-table>
@@ -72,6 +80,7 @@
   import { post, all } from '@/config/fetch';
   import tableColumnData from '@/components/TableColumnData';
   import { mapGetters } from 'vuex'
+  import { AntiForgeryToken } from '@/config/common';
 
   export default {
     components: {
@@ -101,13 +110,30 @@
         }
     },
     computed: {
-      ...mapGetters(['apiUrlAdmin', 'localData'])
+      ...mapGetters(['apiUrl', 'apiUrlAdmin', 'localData', 'reload'])
     },
     created () {
       this.init();
     },
+    watch:{
+      reload:function () {
+        if (this.reload === true){
+          this.loading = true;
+          post(this.listUrl,{
+            length:this.paginationConf.pageSize,
+            start:(this.paginationConf.currentPage-1)*this.paginationConf.pageSize
+          }).then(res => {
+            this.loading = false;
+            this.tableData = res.data;
+            this.paginationConf.total = res.recordsTotal;
+          });
+          this.$store.dispatch('setReload', false);
+        }
+      }
+    },
     methods: {
       init(){
+        AntiForgeryToken(this.apiUrl,this.tabOptions);
         post(this.apiUrlAdmin + '/Right/GetPointRolePointOperateList?pointCode=' + this.tabOptions.Code).then(data => {
           this.domainUrl = this.apiUrlAdmin;
           this.fieldUrl = this.apiUrlAdmin + "/Right/RolePointFieldList?pointCode=" + this.tabOptions.Code; //用来获取point field数据集合的地址
@@ -265,6 +291,8 @@
           });
         }
 
+      },
+      handleRowChange(){
       }
     },
   }

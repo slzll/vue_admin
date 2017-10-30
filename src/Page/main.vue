@@ -43,7 +43,7 @@ export default {
     },
     methods: {
       closeAlert(){
-        this.$store.dispatch('setAlertOptions',{show: false})
+        this.$store.dispatch('setAlertOption',{show: false})
       }
     }
 };

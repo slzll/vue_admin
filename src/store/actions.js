@@ -22,3 +22,7 @@ export const setAlertOption = ({ commit },options) =>{
     commit(types.SET_ALERT_OPTION, {show: false})
   }, 5000)
 };
+
+export const setReload = ({ commit }, value) =>{
+  commit(types.SET_RELOAD, value)
+}

@@ -1,19 +1,19 @@
 <template>
-  <div>
+  <span>
     <custome-button v-if="list.NameA == 'customebutton'"
                     :options="list"
                     :scope="scope">
     </custome-button>
-    <el-button v-else-if="list.NameA == 'buttonsubmit'"
-               size="small"
-               type="danger">
-      {{list.Name}}
-    </el-button>
-    <el-button v-else-if="list.NameA == 'submitparam'"
-               size="small"
-               type="primary">
-      {{list.Name}}
-    </el-button>
+    <button-submit v-else-if="list.NameA == 'buttonsubmit'"
+                   :options="list"
+                   :scope="scope"
+                   :tab-options="tabOptions">
+    </button-submit>
+    <submit-param v-else-if="list.NameA == 'submitparam'|| list.NameA == 'submitshow'"
+                  :options="list"
+                  :scope="scope"
+                  :tab-options="tabOptions">
+    </submit-param>
     <el-button v-else-if="list.NameA == 'submitline'"
                size="small"
                type="primary">
@@ -41,20 +41,24 @@
       </template>
       <span v-else>{{scope.row[list.Code]}}</span>
     </template>
-  </div>
+  </span>
 </template>
 
 <script>
   import { post } from '@/config/fetch';
   import { mapGetters } from 'vuex';
   import customeButton from '@/components/CustomeButton';
+  import submitParam from '@/components/SubmitParam';
+  import ButtonSubmit from "@/components/ButtonSubmit";
 
   export default {
     components:{
-      customeButton
+      ButtonSubmit,
+      customeButton,
+      submitParam
     },
     name: 'tableColumnData',
-    props:['list','scope'],
+    props:['list','scope', 'tabOptions'],
     data () {
       return {}
     },
@@ -118,4 +122,11 @@
 </script>
 
 <style>
+  .el-table .cell{
+    white-space: nowrap;
+  }
+  .el-table td .cell{
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 </style>
