@@ -1,15 +1,15 @@
 /*Object操作扩展*/
 export const getByKey = function (obj, key) {
   let val = {};
-  let key1,key2;
-  if (/|/.test(key)){
+  let key1 = '';
+  let key2 = '';
+  if (/\|/.test(key)){
     key1 = key.split('|')[0];
     key2 = key.split('|')[1];
   }else{
     key1 = key;
     key2 = key;
   }
-
   Object.defineProperty(val, key2, {
     value: obj[key1],
     configurable: true,

@@ -2,7 +2,8 @@
   <div class="page-sidebar-wrapper">
     <div class="page-sidebar">
       <el-menu default-active="1"
-               theme="dark"
+               backgroundColor="#3D4A53"
+               textColor="#DDD"
                class="page-sidebar-menu page-sidebar-menu-hover-submenu"
                :collapse="isCollapse"
                uniqueOpened>
@@ -92,20 +93,7 @@
 </script>
 
 <style scoped>
-  .el-menu{
-    border-radius: 0;
-  }
-  .main-sidebar {
-    width: 230px;
-    background: #222d32;
-  }
-  .main-sidebar .user-panel {
-    display: block;
-    width: 100%;
-    height: 65px;
-  }
-  .main-sidebar .sidebar-form {
-    display: block;
-    width: 100%;
-  }
+.el-menu{
+  border-right: none;
+}
 </style>

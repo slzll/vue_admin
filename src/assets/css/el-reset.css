@@ -1,0 +1,68 @@
+.el-menu{
+  border-radius: 0;
+}
+.el-submenu .el-menu-item{
+  min-width: 198px;
+}
+.main-sidebar {
+  width: 230px;
+  background: #222d32;
+}
+.main-sidebar .user-panel {
+  display: block;
+  width: 100%;
+  height: 65px;
+}
+.main-sidebar .sidebar-form {
+  display: block;
+  width: 100%;
+}
+
+/*
+*/
+
+.el-row {
+  margin-bottom: 20px;
+}
+
+.demo-table-expand {
+  font-size: 0;
+}
+
+.demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 50%;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td, .el-table__body tr.current-row > td, .el-table__body tr.hover-row.current-row > td, .el-table__body tr.hover-row.el-table__row--striped.current-row > td, .el-table__body tr.hover-row.el-table__row--striped > td, .el-table__body tr.hover-row > td {
+  background-color: #ecf5dd;
+}
+/*
+*/
+
+.el-tabs--border-card>.el-tabs__content {
+  padding: 0;
+}
+
+/*
+
+*/
+
+.el-table .cell{
+  white-space: nowrap;
+}
+.el-table .cell span{
+  visibility: visible;
+}
+.el-table th > .cell{
+  visibility: visible;
+}
+.el-table td .cell{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

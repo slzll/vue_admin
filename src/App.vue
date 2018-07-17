@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view keep-alive transition transition-mode="out-in"></router-view>
   </div>
 </template>
 
 <script>
-  import '@/assets/css/reset.css';
-  import 'bootstrap/dist/css/bootstrap.css';
-
   export default {
       name: 'app'
   };

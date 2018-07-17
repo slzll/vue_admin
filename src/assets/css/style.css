@@ -9,7 +9,7 @@
   height: 100%;
 }
 .page-header .page-logo{
-  width: 199px;
+  width: 198px;
   height: 100%;
   float: left;
   background: #388eee;
@@ -57,14 +57,14 @@
 }
 
 .page-container .page-sidebar-wrapper{
-  width: 200px;
+  width: 198px;
   float: left;
-  border-right: 1px solid #DDD;
+  /*border-right: 1px solid #DDD;*/
 }
 
 /*contentWrapper*/
 .page-container .page-content-wrapper{
-  margin-left: 200px;
+  margin-left: 198px;
 }
 
 /*sidebar-hide样式*/

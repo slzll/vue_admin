@@ -19,11 +19,11 @@
                type="primary">
       {{list.Name}}
     </el-button>
-    <el-button v-else-if="list.NameA == 'pageparam'"
-               size="small"
-               type="primary">
-      {{list.Name}}
-    </el-button>
+    <page-param v-else-if="list.NameA == 'pageparam'"
+                :options="list"
+                :scope="scope"
+                :tab-options="tabOptions">
+    </page-param>
     <el-button v-else-if="list.NameA == 'buttonpage'"
                size="small"
                type="primary">
@@ -39,7 +39,7 @@
       <template v-if="list.EditType && list.EditType.indexOf('check')>-1 && list.DataValue">
         {{getLocalData(list.DataValue,scope.row[list.Code])}}
       </template>
-      <span v-else>{{scope.row[list.Code]}}</span>
+      <template v-else>{{scope.row[list.Code]}}</template>
     </template>
   </span>
 </template>
@@ -50,9 +50,11 @@
   import customeButton from '@/components/CustomeButton';
   import submitParam from '@/components/SubmitParam';
   import ButtonSubmit from "@/components/ButtonSubmit";
+  import PageParam from "@/components/PageParam";
 
   export default {
     components:{
+      PageParam,
       ButtonSubmit,
       customeButton,
       submitParam
@@ -122,11 +124,5 @@
 </script>
 
 <style>
-  .el-table .cell{
-    white-space: nowrap;
-  }
-  .el-table td .cell{
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+
 </style>
